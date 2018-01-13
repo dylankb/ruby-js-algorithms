@@ -1,17 +1,3 @@
-# class LinkedList
-#   def initialize(head)
-#     @head = head
-#   end
-# end
-#
-# class Node
-#   attr_reader :nextNode, :value
-#
-#   def initialize(value, nextNode)
-#     @value = value
-#     @nextNode = nextNode
-#   end
-# end
 
 class Node
   attr_accessor :next, :data
@@ -32,6 +18,12 @@ end
 # other_node = node.next
 # other_node.next = Node.new(5)
 
+# Manual setup two
+
+# node = Node.new(1)
+# node.next = Node.new(2)
+# head = node
+
 # Iteration setup
 
 values = [3, 4, 5]
@@ -43,10 +35,6 @@ values.each do |value|
   node.next = new_node
   node = new_node
 end
-
-# node = Node.new(1)
-# node.next = Node.new(2)
-# head = node
 
 def reverse_linked_list(head)
   return nil if head.nil?
