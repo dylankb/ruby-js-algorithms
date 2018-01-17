@@ -1,4 +1,3 @@
-
 =begin
 D - an empty array
 while B and C are both non-empty:
@@ -15,7 +14,6 @@ return D
 
 def merge_sort(arr)
   return arr if arr.length < 2
-  require 'pry'; binding.pry
 
   arr1 = merge_sort(arr[0..arr.length/2 - 1]) #  [1,3,5]
   arr2 = merge_sort(arr[arr.length/2.. arr.length - 1]) #  [2,4,9]
@@ -24,7 +22,7 @@ def merge_sort(arr)
 end
 
 def merge(arr1, arr2)
-  #one central pointer, two sub pointers on each array
+  # one central pointer, two sub pointers on each array
   # push the lesser of two into new array, return new array
   merged = []
   i = 0

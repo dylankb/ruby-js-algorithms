@@ -3,14 +3,14 @@ def max_number(array)
   max_number_helper(array, 0, array.size - 1, max)
 end
 
-def max_number_helper(array, index, last_element_position, max)
-  return max if index == last_element_position + 1
+def max_number_helper(array, index, max)
+  return max if index == array.size
 
   if max < array[index]
     max = array[index]
   end
 
-  max_number_helper(array, index + 1, last_element_position, max)
+  max_number_helper(array, index + 1, max)
 end
 
 p max_number([1,2,3,4,3,8,1]) == 8

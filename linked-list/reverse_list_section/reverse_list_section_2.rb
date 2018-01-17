@@ -1,3 +1,51 @@
+# https://leetcode.com/problems/reverse-linked-list-ii/description/
+
+def reverse_between(head, reverse_start_position, reverse_end_position)
+  counter = 1
+  runner = head
+
+  # node that comes just before the reversed section
+  reverse_prefix = nil
+
+  # node that comes just after the reversed section
+  reverse_after = nil
+
+  # node that is last (then first) of the reversed section
+  reverse_new_head = nil
+
+  # node that is first (then last) of the reversed section
+  reverse_new_tail = nil
+
+  while runner
+    # require 'pry'; binding.pry
+    next_node = runner.next
+    if counter >= reverse_start_position && counter <= reverse_end_position
+      # reversal section
+      previous = reverse_new_head
+      reverse_new_head = runner
+      runner.next = previous # first pass is nil - prevents circular linked list
+      # reverse_new_head, reverse_new_head.next = runner, reverse_new_head
+    end
+
+    reverse_new_tail = runner if counter == reverse_start_position
+    reverse_prefix = runner if counter == reverse_start_position - 1
+    reverse_after = runner if counter == reverse_end_position + 1
+
+    counter += 1
+    runner = next_node
+  end
+
+  # Connect reversed section head back to main list if needed
+  reverse_prefix ? reverse_prefix.next = reverse_new_head : head = reverse_new_head
+
+  # Connect reversed section tail back to main list if needed
+  # If there's no nodes after reversal, assigning `.next` to nil is safe.
+  reverse_new_tail.next = reverse_after
+  # reverse_new_tail = runner if runner # Possible alternative
+
+  head
+end
+
 class Node
   attr_accessor :next, :data
 
@@ -20,95 +68,21 @@ def created_linked_list(values)
   head
 end
 
-values = [1, 2, 3, 4, 5, 6, 7]
-head = created_linked_list(values)
+# values = [1, 2, 3, 4, 5, 6, 7]
+# head = created_linked_list(values)
+#
+# list = reverse_between(head, 2, 4)
+#
+# p list.data == 1
+# p list.next.data == 4
+# p list.next.next.data == 3
+# p list.next.next.next.data == 2
+# p list.next.next.next.next.data == 5
 
 values2 = [1, 2]
 head2 = created_linked_list(values2)
 
-values3 = values2.dup
-head3 = created_linked_list(values2)
-
-def reverse_list_between(head, section_start_position, section_end_position)
-  return nil unless head
-  return head unless head.next
-
-  dummy = Node.new(nil)
-  # Node prior to the beginning of the section to reverse (before the new tail)
-  before_section = nil
-  # Node following the section to be reversed (after the new head)
-  after_section = nil
-
-  previous = head
-  current = head.next
-  dummy.next = previous
-
-  # If list is only length two, reverse and early return
-  if current.next.nil?
-    return reverse_list_until(previous, section_end_position - section_start_position)
-  end
-
-  # Else, reverse a section of the list and reattach it to the main one.
-
-  # Problem space uses 1 as the initial index and `current` points to the second
-  # list node
-  nodes_traversed = 2
-
-  # Find before section and section head (new tail) nodes
-  while nodes_traversed != section_start_position
-    return head if current.nil?
-    # Leave previous one node before list to reverse section
-    previous = current
-    current = current.next
-    nodes_traversed += 1
-  end
-  pre_section_node = previous
-  section_start = current # new section head
-
-  section_end, post_section_node = reverse_list_until(section_start,
-                                                      section_end_position - section_start_position)
-  # Link reversed section back into the main list
-  pre_section_node.next = section_end
-  section_start.next = post_section_node
-
-  dummy.next
-end
-
-def reverse_list_until(head, links_to_reverse)
-  return nil if head.nil?
-  return head if head.next.nil?
-
-  previous = head
-  current = head.next
-
-  nodes_reversed = 0
-
-  while !current.nil? && nodes_reversed != links_to_reverse
-    nexxt = current.next # 3 => 4
-    current.next = previous # Do linking work
-    previous.next = nil if nodes_reversed.zero? # Prevents circular linked list
-
-    previous = current   # 1 => 2 - Also save linking work
-    current = nexxt      # 2 => 3
-
-    nodes_reversed += 1
-  end
-  # Two length lists reversed current is nil, but two length lists that skip
-  # the while loop still have a value for `current`
-  nexxt.nil? ? previous : [previous, current]
-end
-
-list = reverse_list_between(head, 3, 5)
-
-p list.data == 1
-p list.next.next.data == 5
-
-list2 = reverse_list_between(head2, 1, 2)
-
+list2 = reverse_between(head2, 1, 2)
 p list2.data == 2
 p list2.next.data == 1
-
-list3 = reverse_list_between(head3, 1, 1)
-# require 'pry'; binding.pry
-p list3.data == 1
-p list3.next.data == 2
+p list2.next.next.nil?

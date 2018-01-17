@@ -11,7 +11,7 @@ def merge_sorted_lists(list_1_node, list_2_node)
       previous.next = list_2_node
       list_2_node = list_2_node.next
     end
-    # Reassigns previous - otherwise we just reassign previous.next
+    # Reassigns previous - otherwise we would just be reassigning previous.next
     previous = previous.next
   end
   # If loop has ended, then either list_1_node or list_2_node are nil values
@@ -20,10 +20,8 @@ def merge_sorted_lists(list_1_node, list_2_node)
   # `previous` will be attached to the last element in list node that is set to
   # nil - this step changes the `next` value to an element instead of a nil
 
-  require 'pry'; binding.pry
   dummy_head.next
 end
-
 
 class Node
   attr_accessor :next, :data
