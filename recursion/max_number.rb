@@ -1,10 +1,13 @@
 def max_number(array)
   max = array[0]
-  max_number_helper(array, 0, array.size - 1, max)
+  max_number_helper(array, 0, max)
 end
 
 def max_number_helper(array, index, max)
   return max if index == array.size
+  # if index == array.size
+  #   max = max
+  # end
 
   if max < array[index]
     max = array[index]
