@@ -1,10 +1,8 @@
 def min_path_sum(grid)
-  min_path_sum_helper(grid, grid.length - 1, grid[0].length - 1, {})
+  min_sum_helper(grid, grid.length - 1, grid[0].length - 1, {})
 end
 
-
-def min_path_sum_helper(grid, rows, cols, memo)
-
+def min_sum_helper(grid, rows, cols, memo)
   if rows == 0 && cols == 0
     return grid[rows][cols]
   end
@@ -12,10 +10,10 @@ def min_path_sum_helper(grid, rows, cols, memo)
     return Float::INFINITY
   end
 
-  path1 = memo[[rows-1, cols]] || min_path_sum_helper(grid, rows-1, cols, memo)
-  path2 = memo[[rows, cols-1]] || min_path_sum_helper(grid, rows, cols-1, memo)
-
-  memo[[rows, cols]] = grid[rows][cols] + min(path1, path2)
+  path1_sum = memo[[rows-1, cols]] || min_sum_helper(grid, rows-1, cols, memo)
+  path2_sum = memo[[rows, cols-1]] || min_sum_helper(grid, rows, cols-1, memo)
+  require 'pry'; binding.pry
+  memo[[rows, cols]] = grid[rows][cols] + min(path1_sum, path2_sum)
 end
 
 def min(x, y)

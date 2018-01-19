@@ -21,7 +21,7 @@
 // console.log(jump([1,2,3,2,3,0,0,1]) == true);
 // console.log(jump([1,2,3,2,3,0,0,0,0]) == false);
 
-// Recursive iterative
+// Recursive traversal
 
 function canJump(nums) {
   var needToReach = nums.length - 1;

@@ -16,6 +16,32 @@
 #
 # ... Many more combinations...
 
+# More generic: Can the word from index - to n be composed of the words in the dict
+
+l eetcode
+le etcode
+lee tcode
+leeet code
+
+boolean
+
+# Mental model 1: Top down
+
+# f(string, n) - OR{f(string, i) && dict.include?(string[i+1..n])}, whee i=> O...n01
+
+# Mental model 2: Bottom up
+
+# cache: cache[i]: a boolean to represent from the index 0 to index i can be composed with words in the dict
+
+for i in 0..word.size-1
+  for j in 0..i-1
+    cache[j] && dict.include?(word[j+1, i])
+  end
+  cache[j] = false
+end
+
+cache[word.size-1]
+
 
 def word_break(dictionary, string)
   # returns boolean
@@ -41,6 +67,7 @@ def word_break_helper(dictionary, string)
   return false
 end
 
+p word_break(['he', 'll', 'oo'], 'helloo')
 p word_break(['he', 'll', 'oo'], 'helloo')
 p word_break(['he','lp','oo'], 'helloo') # false positive
 p word_break(['he', 'l', 'oo'], 'helloo') # falise positive
