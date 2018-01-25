@@ -40,6 +40,7 @@ class Stack
   end
 
   def get_min
+    # Change to keep min stored as the top stack
     @minimum_node
   end
 end

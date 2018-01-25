@@ -1,4 +1,6 @@
 def simplify_path(path)
+  return '/' if path =~ /\//
+
   stack = Stack.new
   path_segments = path.split('/')
 

@@ -6,15 +6,15 @@ class Node
   end
 end
 
-# A complete binary tree
+# Binary tree
 
-#     I
-#    / \
-#   O   H
-#  / \ / \
-# L  R T  M
-#    / \
-#    A   G
+#      I
+#    /   \
+#   O     H
+#  / \   / \
+# L  R  T  M
+#    /\
+#   A G
 
 root = Node.new("I")
 
@@ -32,7 +32,7 @@ root.right.right = Node.new("M")
 root.left.left.left = Node.new("A")
 root.left.left.right = Node.new("G")
 
-# Another complete binary tree
+# Another binary tree
 
 #     1
 #    / \
@@ -60,7 +60,7 @@ def in_order(node)
   results
 end
 
-p in_order(root2)
+p in_order(root2) == ["4", "2", "5", "1", "3"]
 
 def pre_order(node)
  return [] if node.nil?
@@ -71,7 +71,8 @@ def pre_order(node)
  results
 end
 
-p pre_order(root2)
+p pre_order(root2) == ["1", "2", "4", "5", "3"]
+p pre_order(root) == ["I", "O", "L", "A", "G", "R", "H", "T", "M"]
 
 def post_order(node)
   return [] if node.nil?
@@ -82,4 +83,4 @@ def post_order(node)
   results
 end
 
-p post_order(root2)
+p post_order(root2) == ["4", "5", "2", "3", "1"]

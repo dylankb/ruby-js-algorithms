@@ -76,6 +76,9 @@ queue = Queue.new
 queue.enqueue(5)
 queue.enqueue(6)
 
-p queue.peak().data
+p queue.peak().data == 5
 queue.dequeue
-p queue.peak().data
+p queue.peak().data == 6
+
+queue.enqueue(7)
+p queue.peak().data == 6
