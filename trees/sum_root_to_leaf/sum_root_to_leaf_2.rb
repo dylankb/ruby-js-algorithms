@@ -6,12 +6,9 @@ end
 
 def sum_root_to_leaf_helper(node, total)
   return 0 if node.nil?
-
   # 12 = '1' + '2' to integers
   total = total ? (total.to_s + node.val.to_s).to_i : node.val
-  if is_leaf?(node.left, node.right)
-    return total
-  end
+  return total if leaf?(node.left, node.right)
 
   left_result = sum_root_to_leaf_helper(node.left, total)
   right_result = sum_root_to_leaf_helper(node.right, total)
@@ -19,7 +16,7 @@ def sum_root_to_leaf_helper(node, total)
   left_result + right_result
 end
 
-def is_leaf?(left_node, right_node)
+def leaf?(left_node, right_node)
   left_node.nil? && right_node.nil?
 end
 
@@ -37,7 +34,7 @@ root.left.left = Node.new("3")
 
 root.right = Node.new("4")
 
-p sum_root_to_leaf(root) == (123 + 14)
+p sum_root_to_leaf(root) #== (123 + 14)
 
 # First attempt
 

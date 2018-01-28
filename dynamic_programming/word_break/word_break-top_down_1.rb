@@ -23,9 +23,9 @@ end
 
 p word_break("aaaaaaa", ["aaaa","aa"]) == false # false positive
 
-# p word_break('helloo', ['he', 'll', 'oo']) == true
-# p word_break('helloo', ['he','lp','oo']) == false # false positive
-# p word_break('helloo', ['he','lpoo']) == false
-# p word_break(['he', 'l', 'oo'], 'helloo') # falise positive
+p word_break('helloo', ['he', 'll', 'oo']) == true
+p word_break('helloo', ['he','lp','oo']) == false # false positive
+p word_break('helloo', ['he','lpoo']) == false
+p word_break('helloo', ['he', 'l', 'oo']) == false # falise positive
 # p word_break(['be', 'l', 'oo'], 'helloo')
 # p word_break(['he'], 'helloo')

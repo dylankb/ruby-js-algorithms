@@ -12,7 +12,7 @@ def min_sum_helper(grid, rows, cols, memo)
 
   path1_sum = memo[[rows-1, cols]] || min_sum_helper(grid, rows-1, cols, memo)
   path2_sum = memo[[rows, cols-1]] || min_sum_helper(grid, rows, cols-1, memo)
-  require 'pry'; binding.pry
+
   memo[[rows, cols]] = grid[rows][cols] + min(path1_sum, path2_sum)
 end
 

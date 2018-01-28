@@ -1,6 +1,6 @@
 # Mental Model 1:
 
-# What's the minimum path sum from the top element to a given element? Then the oeveral solution n:
+# What's the minimum path sum from the top element to a given element? Then the overall solution n:
 
 # MIN{f(A.size1, i), where i => 0... A.size-1}
 # ---
@@ -39,7 +39,7 @@ end
 
 def minimum_total_helper(triangle, row, col)
   # base case - return the value for the top triangle point when you reach it
-  require 'pry'; binding.pry
+
   return triangle[row][col] if row == triangle.size-1
 
   left_sum = minimum_total_helper(triangle, row+1, col)

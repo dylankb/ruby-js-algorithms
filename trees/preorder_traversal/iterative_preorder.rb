@@ -8,14 +8,14 @@ end
 
 def preorder_traversal(root)
   ordered_nodes = []
-  queue = []
+  stack = []
   tracker_node = root
   while tracker_node
     queue.push(tracker_node.right) if tracker_node.right
     queue.push(tracker_node.left) if tracker_node.left
 
     ordered_nodes.push(tracker_node.val)
-    tracker_node = queue.pop
+    tracker_node = stack.pop
   end
 
   ordered_nodes

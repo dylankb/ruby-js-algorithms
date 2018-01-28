@@ -1,7 +1,7 @@
 # Basic memoization example
 
 def fibonacci(num)
-  fibs = [0,1]
+  fibs = [0,1] # cache of values - at index 0 return value 0, etc.
   (2..num).each do |i|
     fibs[i] = fibs[i-1] + fibs[i-2]
   end

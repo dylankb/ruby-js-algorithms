@@ -1,5 +1,6 @@
+# WIP
+
 # def word_break(dictionary, word)
-#   # require 'pry'; binding.pry
 #   cache = {}
 #   word.size.times do |index|
 #     index-1.times do |inner_index|
@@ -14,7 +15,7 @@
 def word_break(word, dictionary)
   cache = Array.new(word.length, false)
   cache[0] = true
-  
+
   word.size.times do |index|
     index-1.times do |inner_index|
       if cache[inner_index] && dictionary.include?(word[inner_index..index])

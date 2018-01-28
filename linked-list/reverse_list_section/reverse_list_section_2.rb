@@ -17,7 +17,6 @@ def reverse_between(head, reverse_start_position, reverse_end_position)
   reverse_new_tail = nil
 
   while runner
-    # require 'pry'; binding.pry
     next_node = runner.next
     if counter >= reverse_start_position && counter <= reverse_end_position
       # reversal section

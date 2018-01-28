@@ -11,12 +11,9 @@
 #   result = collection[middle_index]
 #   while result != number
 #     if result > number
-#       binding.pry
 #       middle_index = (0..middle_index).to_a.length / 2
 #       result = collection[middle_index]
-#       binding.pry
 #     elsif result < number
-#       binding.pry
 #       middle_index = (middle_index..(collection.length - 1)).to_a.length / 2
 #       result = collection[middle_index]
 #     end

@@ -9,7 +9,7 @@ end
 def sum_root_to_leaf_helper(node, root_value, total)
   return 0 if node.nil?
 
-  if is_leaf?(node.left, node.right)
+  if leaf?(node.left, node.right)
     root_to_leaf = (root_value.to_s + node.val.to_s).to_i
     total[:sum] += root_to_leaf
 
@@ -22,7 +22,7 @@ def sum_root_to_leaf_helper(node, root_value, total)
   total[:sum]
 end
 
-def is_leaf?(left_node, right_node)
+def leaf?(left_node, right_node)
   left_node.nil? && right_node.nil?
 end
 
