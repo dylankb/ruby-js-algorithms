@@ -7,25 +7,24 @@ var power = function(x, n) {
     // recursive case: n is negative
     if (n < 0) { return 1 / power(x, -1 * n); }
     // recursive case: n is odd
-    if (isOdd(n)) { return x * power(x, n - 1); }
+    if (n % 2 != 0) { return x * power(x, n - 1); }
     // recursive case: n is even
     // more efficient version
-    if (isEven(n)) {
+    if (n % 2 === 0) {
         sum = power(x, n / 2);
-        sum * sum
+        return sum * sum
     }
 };
 
 // Tail recursion example
 
-var power = (number, power_of, base_exponent=0, acc=1.0) => {
-  if (base_exponent === power_of) {
+let power = (base, power_of, acc=base) => {
+  if (power_of === 0) {
+    return 1
+  } else if (power_of === 1) {
     return acc
-  }
-  else if (power_of == acc) {
-    return number
   } else {
-    return number * power(number, power_of - 1);
+    return power(base, power_of - 1, base * acc);
   }
 }
 
@@ -33,3 +32,4 @@ console.log(power(3, 0)); // 1
 console.log(power(3, 1)); // 3
 console.log(power(3, 2)); // 3
 console.log(power(3, 3)); // 3
+console.log(power(2, -2)); // 3
