@@ -1,0 +1,22 @@
+{
+  "name": "ruby-js-algorithms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylankb/cs-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dylankb/cs-practice/issues"
+  },
+  "homepage": "https://github.com/dylankb/cs-practice#readme",
+  "dependencies": {
+    "jest": "^22.4.3"
+  }
+}
