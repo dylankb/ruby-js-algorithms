@@ -13,7 +13,7 @@ def bst_insert(root, node)
     else
       root.right = node
     end
-  else
+  elsif node.val < root.val
     if root.left
       bst_insert(root.left, node)
     else
@@ -27,15 +27,22 @@ end
 # Divide and Conquer approach
 
 # return node
-# if conditional for which is the correct branch 
+# if conditional for which is the correct branch
   # either root.left = insert node bst left
   # or root.right = insert node bst right
 
 root = Node.new("1")
-root.left = Node.new("2")
+bst_insert(root, Node.new("2"))
+p root.right.val == "2"
 
 bst_insert(root, Node.new("3"))
-p root.right.val == "3"
+p root.right.right.val == "3"
 
 bst_insert(root, Node.new("5"))
-p root.right.right.val == "5"
+p root.right.right.right.val == "5"
+
+# handles duplicates
+bst_insert(root, Node.new("5"))
+p root.right.right.right.right.nil? && root.right.right.right.left.nil?
+
+p root
