@@ -53,7 +53,7 @@ def power(base, exponent)
   if exponent == 0
     return 1
   else
-    power(base, exponent - 1)
+    base * power(base, exponent - 1)
   end
 end
 

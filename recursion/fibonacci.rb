@@ -1,12 +1,12 @@
 # Recursion - calculating the nth Fibonacci number
 
-# def fibonacci(num)
-#   return num if num < 2
-#
-#   return fibonacci(num-1) + fibonacci(num-2)
-# end
+def fibonacci(num)
+  return num if num < 2
 
-# p fibonacci(3)
+  return fibonacci(num-1) + fibonacci(num-2)
+end
+
+p fibonacci(2)
 
 # Basic iteration - very naive
 

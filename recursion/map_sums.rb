@@ -1,9 +1,9 @@
 # Map previous array sums so that each sum is the next accumulated total
-# map_sums([1,2,3,4,5,6]) => [1,3,6,10,15,21]
+# map_sums([1, 2, 3, 4, 5, 6]) => [1,3,6,10,15,21]
 
 # Approach 1: Recursion confusions
 
-# I'm leaving these here just to document my confusions with recursion.
+# I'm leaving these attempts here just to document my prior confusions with recursion.
 
 def map_sums(array)
   sum = 0
@@ -13,7 +13,7 @@ end
 def map_sums_helper(array, index)
   array[index] = map_sums_helper(array, index) + map_sums_helper(array, index + 1)
 
-  if index == 0
+  if index.zero?
     array[index] = array[index]
     return array[index]
   end
@@ -21,7 +21,7 @@ def map_sums_helper(array, index)
   array[index]
 end
 
-p map_sums([1,2,3,4,5,6])
+p map_sums([1, 2, 3, 4, 5, 6])
 
 
 def map_sums_helper(array, index, sum)
@@ -37,12 +37,12 @@ def map_sums_helper(array, index, sum)
 
   map_sums_helper(array, index - 1, sum)
 
-  array[index-1] += array[index-2]
+  array[index - 1] += array[index - 2]
 
   array
 end
 
-p map_sums([1,2,3,4,5,6])
+p map_sums([1, 2, 3, 4, 5, 6])
 
 # Approach 2: Recursive iteration - iteration starts from then end of the array
 
@@ -50,7 +50,7 @@ p map_sums([1,2,3,4,5,6])
 # from the end of the array.
 
 def map_sums(array) # returns array
-  return [] if array.size == 0
+  return [] if array.empty?
   return array[0] if array.size == 1
 
   map_sums_helper(array, array.size-1)
@@ -59,12 +59,12 @@ def map_sums(array) # returns array
 end
 
 def map_sums_helper(array, index) # returns number
-  return array[index] if index == 0
+  return array[index] if index.zero?
 
   array[index] = array[index] + map_sums_helper(array, index - 1)
 end
-#
-p map_sums([1,2,3,4,5,6])
+
+p map_sums([1, 2, 3, 4, 5, 6])
 
 # Approach 3. - Recursive iteration from end of array
 
@@ -84,7 +84,7 @@ p map_sums([1,2,3,4,5,6])
 # was to create a duplicate array that was read only.
 
 def map_sums(array) # returns array
-  return [] if array.size == 0
+  return [] if array.empty?
   return array[0] if array.size == 1
 
   map_sums_helper!(array, array.dup, 0)
@@ -92,11 +92,11 @@ def map_sums(array) # returns array
 end
 
 def map_sums_reverse_helper(array, array_dup, index)
-  return array[index] if index == 0
+  return array[index] if index.zero?
   array_dup[index] + map_sums_reverse_helper(array, array_dup, index - 1)
 end
 
-def map_sums_helper!(array, array_dup, index) # no return value
+def map_sums_helper!(array, array_dp, index) # no return value
   return if index == array.size
 
   previous_value = map_sums_reverse_helper(array, array_dup, index)
@@ -105,7 +105,7 @@ def map_sums_helper!(array, array_dup, index) # no return value
   map_sums_helper!(array, array_dup, index + 1)
 end
 
-p map_sums([1,2,3,4,5,6]) == [1, 3, 6, 10, 15, 21]
+p map_sums([1, 2, 3, 4, 5, 6]) == [1, 3, 6, 10, 15, 21]
 
 # Approach 4. Recursive iteration from start of the array.
 
@@ -115,7 +115,7 @@ p map_sums([1,2,3,4,5,6]) == [1, 3, 6, 10, 15, 21]
 # current 0..index.
 
 def map_sums(array) # returns array
-  return [] if array.size == 0
+  return [] if array.empty?
   return array if array.size == 1
 
   new_array = map_sums_helper(array, 1)
@@ -124,9 +124,9 @@ end
 def map_sums_helper(array, index) # return array
   return array if index == array.size
 
-  array[index] = array[index] + array[index-1]
+  array[index] = array[index] + array[index - 1]
 
   map_sums_helper(array, index + 1)
 end
 
-p map_sums([1,2,3,4,5,6]) == [1, 3, 6, 10, 15, 21]
+p map_sums([1, 2, 3, 4, 5, 6]) == [1, 3, 6, 10, 15, 21]
