@@ -1,32 +1,28 @@
-# Solution 1) Switch and nil out circular loop first version
+# Solution 6) Pre loop circular list prevention with clearer three window slide
 
-# Need to set first `previous.next` in the first iteration to prevent creating
-# a circular linked list. This version does so before entering the while loop.
+# Similar to version 4, except that we've changed the logic for iteration and linking
+# work.
 def reverse_linked_list(head)
   return nil if head.nil?
   return head if head.next.nil?
 
   previous = head
   current = head.next
-  nexxt = head.next.next
+  nexxt = current.next
 
-  current.next = previous
-  previous.remove_instance_variable(:@next) # Removes circular loop
+  previous.next = nil
 
-  while !nexxt.nil?
-    # Block of code that iterates our three-window solution:
+  while !current.nil?
+    # Do linking work
+    current.next = previous # 2 -> 1
 
-    # `previous` is now the head or the closest node to the head, so we can leave it
-    # behind as it's already being pointed to correctly.
-    # I.e if the list is: 1 -> 2 -> 3 -> 4
-    previous = current   # 1 => 2
-    current = nexxt      # 2 => 3
-    nexxt = current.next # 3 => 4
-
-    current.next = previous
+    # Three window slide
+    previous = current    # 1 => 2
+    current = nexxt       # 2 => 3
+    nexxt = current.next if current # 3 => 4
   end
 
-  current
+  previous
 end
 
 class Node
@@ -37,13 +33,7 @@ class Node
   end
 end
 
-# Manual setup
-
-# node = Node.new(1)
-# node.next = Node.new(2)
-# head = node
-
-# Iteration setup
+# Setup
 
 def create_linked_list(values)
   node = Node.new(values[0])

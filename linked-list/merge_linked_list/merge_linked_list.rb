@@ -1,24 +1,26 @@
-def merge_sorted_lists(list_1_node, list_2_node)
-  dummy_head = Node.new(nil)
-  previous = dummy_head
+# https://leetcode.com/problems/merge-two-sorted-lists/
 
-  while list_1_node && list_2_node
-    # set `previous` to the smaller list node value
-    if list_1_node.data <= list_2_node.data
-      previous.next = list_1_node
-      list_1_node = list_1_node.next
+def merge_sorted_lists(list1_node, list2_node)
+  dummy_head = Node.new(nil)
+  list_tail = dummy_head
+
+  while list1_node && list2_node
+    # set `list_tail` to the smaller list node value
+    if list1_node.data <= list2_node.data
+      list_tail.next = list1_node
+      list1_node = list1_node.next
     else
-      previous.next = list_2_node
-      list_2_node = list_2_node.next
+      list_tail.next = list2_node
+      list2_node = list2_node.next
     end
-    # Reassigns previous - otherwise we would just be reassigning previous.next
-    previous = previous.next
+    # Move list_tail up to current list tail - otherwise we would just be continually reassigning list_tail.next
+    list_tail = list_tail.next
   end
-  # If loop has ended, then either list_1_node or list_2_node are nil values
+  # If loop has ended, then either list1_node or list2_node are nil values
   # - i.e one of them has reached the end of the list and has been set to nil
-  previous.next = list_1_node ? list_2_node : list_1_node
-  # `previous` will be attached to the last element in list node that is set to
-  # nil - this step changes the `next` value to an element instead of a nil
+  list_tail.next = list1_node ? list2_node : list1_node
+  # If that's the case, then we can set the current point of the list with remainy nodes
+  # to the end of `list_tail`
 
   dummy_head.next
 end
@@ -32,22 +34,24 @@ class Node
 end
 
 def created_linked_list(values)
-  node = Node.new(1)
-  head = node
+  dummy = Node.new(nil)
+  current = dummy
 
   values.each do |value|
     new_node = Node.new(value)
-    node.next = new_node
-    node = new_node
+    current.next = new_node
+    current = new_node
   end
 
-  head
+  dummy.next
 end
 
 values = [4, 5]
-list_1_head = created_linked_list(values)
+list1_head = created_linked_list(values)
+p list1_head
 
 other_values = [2, 3, 6]
-list_2_head = created_linked_list(other_values)
+list2_head = created_linked_list(other_values)
+p list2_head
 
-merge_sorted_lists(list_1_head, list_2_head)
+# merge_sorted_lists(list_1_head, list_2_head)
