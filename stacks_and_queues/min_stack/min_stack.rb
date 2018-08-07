@@ -1,10 +1,5 @@
-class Node
-  attr_accessor :next, :data
-
-  def initialize(data)
-    @data = data
-  end
-end
+# https://leetcode.com/problems/min-stack/description/
+require_relative '../../utils/node'
 
 class Stack
   def initialize
